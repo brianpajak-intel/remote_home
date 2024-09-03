@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/tmp/DMR_23.03.002.p006_release_candidate/applications.design-automation.dft.ultibuild.code/tessent_plugin/packages/mbist_integration'
+let g:netrw_dirhist_5='/nfs/site/disks/sc_dteg_5001/users/bjpajak/testchip_11_17/applications.design-automation.dft.ultibuild.example-testcases/testchip_tap_3.0/src/codegen/testchip/up/testchip/output/testchip_DFT_SPEC/tile_0_DFT_SPEC'
+let g:netrw_dirhist_4='/nfs/site/disks/sc_dteg_5001/users/bjpajak/testchip_11_17/applications.design-automation.dft.ultibuild.example-testcases/testchip_tap_3.0/dfx/ub/tc_container_2'
+let g:netrw_dirhist_3='/nfs/site/disks/sc_dteg_5000/dft_tool_regressions/jenkins_alfred/workspace/UltiBuild/Weekly_Release_Candidate/applications.design-automation.dft.ultibuild.regression/lsm_bisr/output/lsm_bisr/defacto/trial/gen/filelist'
+let g:netrw_dirhist_2='/nfs/site/disks/sc_dteg_5001/users/bjpajak/fix_push/applications.design-automation.dft.ultibuild.regression/lsm_bisr/iflow'
+let g:netrw_dirhist_1='/nfs/site/disks/sc_dteg_5001/users/bjpajak/ultibuild_7_10_23/applications.design-automation.dft.ultibuild.regression/testchip/output/testchip/ub/trial/ub_integration/output/tsdb_outdir/dft_inserted_designs/testchip_rtl1.dft_inserted_design'
+let g:netrw_dirhist_0='/nfs/site/disks/sc_dteg_5001/users/bjpajak/ultibuild_7_10_23/applications.design-automation.dft.ultibuild.regression/shipped_ip/ip_functional_wrapper/filelists'
+let g:netrw_dirhist_9='/nfs/site/disks/sc_dteg_5001/users/bjpajak/ultibuild_7_10_23/applications.design-automation.dft.ultibuild.regression/demo/testchip/integration/upf/globals'
+let g:netrw_dirhist_8='/nfs/site/disks/sc_dteg_5001/users/bjpajak/ultibuild_7_10_23/applications.design-automation.dft.ultibuild.regression/demo/testchip/iflow'
+let g:netrw_dirhist_7='/nfs/site/disks/bjpajak_wa_01/jp/applications.design-automation.dft.ultibuild.regression/missing_icl_example/icl_extraction_example/src'

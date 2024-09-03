@@ -55,8 +55,8 @@ alias wa 'setenv WORKAREA $PWD; echo "WORKAREA = $WORKAREA"'
 
 # Ultibuild
 alias ubcp 'setenv UB_CODE_PATH $PWD; echo "UB_CODE_PATH = $UB_CODE_PATH"'
-alias newub 'source ~/scripts/TCSH/ub_clone.csh \!:1'
-alias ubvs  'source ~/scripts/TCSH/ub_vs_clone.csh \!:1'
+alias newub 'source ~/bin/ub_clone.csh \!:1'
+alias ubvs  'source ~/bin/ub_vs_clone.csh \!:1'
 alias lsub  'echo "Directory listing for: /p/hdk/pu_tu/prd/dteg/ultibuild"; ls /p/hdk/pu_tu/prd/dteg/ultibuild'
 alias ubcth12 '/p/hdk/pu_tu/prd/liteinfra/1.12/commonFlow/bin/cth_psetup  -proj pesg/2020.09SP -force -read_only -cfg_ov $WORKAREA/local_cfg.cth'
 alias ubcth '/p/hdk/pu_tu/prd/liteinfra/1.13.p03/commonFlow/bin/cth_psetup -proj dteg/latest  -cfg dteg_fe.cth -force -read_only'
@@ -73,7 +73,7 @@ alias clonecode 'git clone https://github.com/intel-innersource/applications.des
 alias cloneregression 'git clone https://github.com/intel-innersource/applications.design-automation.dft.ultibuild.regression.git ub.regression'
 
 # VSCode
-alias gvim  ~/scripts/TCSH/gvim.csh
-alias ubterm 'source ~/scripts/TCSH/find_matching_spaces_and_set_envvars.csh'
+alias gvim  ~/bin/gvim.csh
+alias ubterm 'source ~/bin/find_matching_spaces_and_set_envvars.csh'
 alias vsc "$VSCODE_HOME/code --user-data-dir $VSCODE_USER_DATA --extensions_dir $VSCODE_USER_EXTENSIONS"
 alias posh 'eval `oh-my-posh init tcsh --config ~/oh-my-posh-theme.omp.json`'
