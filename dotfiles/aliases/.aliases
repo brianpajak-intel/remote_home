@@ -16,6 +16,7 @@ alias hq "history | grep \!:1"
 alias hq2 "history | grep \!:1 | grep \!:2"
 alias hq3 "history | grep \!:1 | grep \!:2 | grep \!:3"
 alias cleanhome "/usr/intel/bin/ncdu --exclude ~/.snapshot ~"
+alias xterm konsole
 
 alias send_stuff 'set thisuser=`whoami`; gtar czf from_${thisuser}.tgz \!*; rm -rf /tmp/from_${thisuser}; mkdir /tmp/from_${thisuser}; cp from_${thisuser}.tgz /tmp/from_${thisuser}/;  chmod -R 777 /tmp/from_${thisuser}; rm -rf from_${thisuser}.tgz; set thishost=`hostname -f`; echo ; echo "SCP COMMAND"; echo "-----------"; echo "scp ${thishost}:/tmp/from_${thisuser}/from_${thisuser}.tgz ."'
 alias encrypt_and_send 'set thisuser=`whoami`; gtar cvhzf from_${thisuser}.tgz \!*; set rndpass=`openssl rand -base64 12` ; gpg --yes --batch --passphrase=$rndpass -c from_${thisuser}.tgz ; rm -rf /tmp/from_${thisuser}; mkdir /tmp/from_${thisuser}; cp from_${thisuser}.tgz.gpg /tmp/from_${thisuser}/;  chmod -R 777 /tmp/from_${thisuser}; rm -rf from_${thisuser}.tgz.gpg; rm -rf from_${thisuser}.tgz; set thishost=`hostname -f`; echo ; echo "INSTRUCTIONS TO GET FILES"; echo "-------------------------"; echo "scp ${thishost}:/tmp/from_${thisuser}/from_${thisuser}.tgz.gpg ."; echo "gpg --yes --batch --passphrase=$rndpass from_${thisuser}.tgz.gpg"; echo "gtar xvzf from_${thisuser}.tgz"; echo "rm from_${thisuser}.tgz.gpg"; echo "rm from_${thisuser}.tgz"'
