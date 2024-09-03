@@ -1,0 +1,109 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+blocks:
+  - alignment: left
+    segments:
+      # Session
+      - background: p:black
+        foreground: p:white
+        invert_powerline: true
+        powerline_symbol: 
+        style: powerline
+        template: "{{ .UserName }}@{{ .HostName }} "
+        type: session
+
+      # Path
+      - background: p:orange
+        foreground: p:white
+        powerline_symbol: 
+        properties:
+          home_icon: ""
+          style: folder
+        style: powerline
+        template: "  {{ .Path }} "
+        type: path
+
+      # Git
+      - background: p:green
+        foreground: p:white
+        powerline_symbol: 
+        properties:
+          script: |
+            BRANCH=$(git branch --show-current 2>/dev/null)
+            [[ -z $BRANCH ]] && exit
+            status=$(git status --porcelain | awk '{print $1}')
+            [[ $status == *"R"* ]] && bits+='>'
+            [[ $status == *"A"* ]] && bits+='+'
+            [[ $status == *"??"* ]] && bits+='?'
+            [[ $status == *"D"* ]] && bits+='x'
+            [[ $status == *"M"* ]] && bits+='!'
+            [[ "$(git rev-list --count "@{u}..")" -gt 0 ]] && bits+='*'
+            [[ -n $bits ]] && STAT="  $bits"
+            echo -n " $BRANCH$STAT"
+          shell: bash
+        style: powerline
+        template: " {{ .Output }} "
+        type: command
+
+      # Execution time
+      - background: p:darkred
+        foreground: p:white
+        powerline_symbol: 
+        properties:
+          always_enabled: true
+          style: round
+        style: powerline
+        template: " 󰔟{{ .FormattedMs }} "
+        type: executiontime
+
+      # Cheetah Status
+      - background: p:purple
+        foreground: p:catblue
+        powerline_symbol: 
+        template: "{{ if eq .Env.CTH_ENV_INDICATOR \"1\" }} \ueeed {{ end }} "
+        style: powerline
+        type: text
+
+      # Exit code
+      - background: p:blue
+        background_templates:
+          - "{{ if gt .Code 0 }}p:red{{ end }}"
+        foreground: p:white
+        powerline_symbol: 
+        properties:
+          always_enabled: true
+        style: diamond
+        template: " {{ if gt .Code 0 }} {{ reason .Code }}{{ else }}{{ end }} "
+        trailing_diamond: 
+        type: status
+    type: prompt
+  - alignment: right
+    segments:
+      # Shell
+      - background: p:black
+        foreground: p:white
+        style: plain
+        template: <p:black,transparent></> {{ .Name }}<transparent,p:black></>
+        type: shell
+    type: rprompt
+
+final_space: true
+console_title_template:  {{ .Shell }} in {{ if ne .Folder "~"}} {{ .Folder }}{{else}}{{end}}
+palette:
+  black: "#51645A"
+  blue: "#277b48"
+  darkred: "#7c0a16"
+  green: "#4682B4"
+  orange: "#8B857C"
+  red: "#de3142"
+  white: "#efeef4"
+  purple : "#625580"
+  catblue : "#B6D4D3"
+secondary_prompt:
+  background: transparent
+  foreground: p:white
+  template: " "
+transient_prompt:
+  background: transparent
+  foreground: p:white
+  template: " "
+version: 2

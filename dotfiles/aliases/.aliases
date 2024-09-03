@@ -1,0 +1,79 @@
+# EC Standard Login Environment -*- sh -*-
+# user .aliases file
+# $Source: /usr/cvs/cvsrep/ec_environ-1.0/release/user/aliases,v $
+# $Revision: 1.1 $
+
+alias stow 'stow -d dotfiles -t ~/ '
+alias unstow 'stow -D -d dotfiles -t ~/ '
+
+# You may place your personal aliases here or in .cshrc.$USER
+alias c clear
+alias p perl
+alias grep grep --color 
+alias myquota     'du --si --exclude .snapshot'  # to see your quota and usage
+alias myquotasort 'du -sk * .??* | sort -n'      # to sort your usage from smallest to largest
+alias hq "history | grep \!:1"
+alias hq2 "history | grep \!:1 | grep \!:2"
+alias hq3 "history | grep \!:1 | grep \!:2 | grep \!:3"
+alias cleanhome "/usr/intel/bin/ncdu --exclude ~/.snapshot ~"
+
+alias send_stuff 'set thisuser=`whoami`; gtar czf from_${thisuser}.tgz \!*; rm -rf /tmp/from_${thisuser}; mkdir /tmp/from_${thisuser}; cp from_${thisuser}.tgz /tmp/from_${thisuser}/;  chmod -R 777 /tmp/from_${thisuser}; rm -rf from_${thisuser}.tgz; set thishost=`hostname -f`; echo ; echo "SCP COMMAND"; echo "-----------"; echo "scp ${thishost}:/tmp/from_${thisuser}/from_${thisuser}.tgz ."'
+alias encrypt_and_send 'set thisuser=`whoami`; gtar cvhzf from_${thisuser}.tgz \!*; set rndpass=`openssl rand -base64 12` ; gpg --yes --batch --passphrase=$rndpass -c from_${thisuser}.tgz ; rm -rf /tmp/from_${thisuser}; mkdir /tmp/from_${thisuser}; cp from_${thisuser}.tgz.gpg /tmp/from_${thisuser}/;  chmod -R 777 /tmp/from_${thisuser}; rm -rf from_${thisuser}.tgz.gpg; rm -rf from_${thisuser}.tgz; set thishost=`hostname -f`; echo ; echo "INSTRUCTIONS TO GET FILES"; echo "-------------------------"; echo "scp ${thishost}:/tmp/from_${thisuser}/from_${thisuser}.tgz.gpg ."; echo "gpg --yes --batch --passphrase=$rndpass from_${thisuser}.tgz.gpg"; echo "gtar xvzf from_${thisuser}.tgz"; echo "rm from_${thisuser}.tgz.gpg"; echo "rm from_${thisuser}.tgz"'
+
+# Disks
+alias work1 'cd /nfs/site/disks/bjpajak_wa_01'
+alias work2 'cd /nfs/site/disks/sc_dteg_5001/users/bjpajak'
+alias homecheck '/usr/intel/bin/ncdu --exclude ~/.snapshot ~'
+
+# Git
+alias get_plugin 'git clone https://github.com/brianpajak-intel/tessent_plugin.git'
+alias gitc 'set branch=`git rev-parse --abbrev-ref HEAD`; git commit -m "${branch} : \!*"'
+alias gitp 'git add -p \!*'
+alias gitl 'git lg'
+alias gits 'git status'
+# this prevents oh-my-posh
+#alias precmd "source ~/scripts/TCSH/gitprompt.tcsh"
+
+# DVT
+alias dvt_tcl       'setenv OLD_LM_PROJECT $LM_PROJECT; setenv LM_PROJECT PESG; /p/com/eda/intel/dvt_eclipse_utils/latest/bin/dvt_tcl; setenv LM_PROJECT $OLD_LM_PROJECT'
+alias dvt_eclipse   '/p/com/eda/intel/dvt_eclipse_utils/latest/bin/dvt_eclipse'
+alias dvt_perl      '/p/com/eda/intel/dvt_eclipse_utils/latest/bin/dvt_perl'
+alias dvt_python    '/p/com/eda/intel/dvt_eclipse_utils/latest/bin/dvt_python'
+setenv http_proxy http://proxy-dmz.intel.com:911
+setenv https_proxy http://proxy-dmz.intel.com:912
+setenv no_proxy ‘intel.com,.intel.com,localhost,127.0.0.0/8,10.0.0.0/8,192.168.0.0/16,134.134.0.0/16’
+
+# Tessent
+alias setup_tessent ~/setup_tessent
+alias ts 'tessent -shell'
+alias tsd 'tessent -shell -dftvis -dofile \!:1 -log `basename \!:1 | cut -f 1 -d '.'`.log -replace'
+alias tsd12 'tessent -shell -dofile \!:1 -log `basename \!:1 | cut -f 1 -d '.'`.log -replace'
+alias plugin 'setenv TESSENT_PLUGIN_PATH $WORK1/tessent/tessent_plugin'
+
+# Cheetah
+alias wa 'setenv WORKAREA $PWD; echo "WORKAREA = $WORKAREA"'
+
+# Ultibuild
+alias ubcp 'setenv UB_CODE_PATH $PWD; echo "UB_CODE_PATH = $UB_CODE_PATH"'
+alias newub 'source ~/scripts/TCSH/ub_clone.csh \!:1'
+alias ubvs  'source ~/scripts/TCSH/ub_vs_clone.csh \!:1'
+alias lsub  'echo "Directory listing for: /p/hdk/pu_tu/prd/dteg/ultibuild"; ls /p/hdk/pu_tu/prd/dteg/ultibuild'
+alias ubcth12 '/p/hdk/pu_tu/prd/liteinfra/1.12/commonFlow/bin/cth_psetup  -proj pesg/2020.09SP -force -read_only -cfg_ov $WORKAREA/local_cfg.cth'
+alias ubcth '/p/hdk/pu_tu/prd/liteinfra/1.13.p03/commonFlow/bin/cth_psetup -proj dteg/latest  -cfg dteg_fe.cth -force -read_only'
+alias ucmdq 'grep -A 1 RUNDIR $WORKAREA/iflow/iflow.ini | grep -A 1 dfx | grep CMD | grep -w \!:1'
+alias ucmdq2 'ucmdq \!:1 | grep \!:2'
+alias irun 'cd $WORKAREA/iflow; make iflow_all IFLOW_OPTS=-cleanall'
+alias irunl "grep '^\[' "\$"WORKAREA/iflow/iflow.ini | sed -e 's/\[/cd "\$"WORKAREA\/iflow\; make iflow_run_/' | sed -e 's/\]/ IFLOW_OPTS="-cleanall"/'"
+alias irunlq "grep '^\[' "\$"WORKAREA/iflow/iflow.ini | sed -e 's/\[/cd "\$"WORKAREA\/iflow\; make iflow_run_/' | sed -e 's/\]/ IFLOW_OPTS="-cleanall"/' | grep \!:1"
+alias ucmd 'ucmdq collateral | grep `basename $PWD`; ucmdq integration | grep `basename $PWD`; ucmdq val_collateral | grep `basename $PWD`'
+alias ucmdp 'ucmdq collateral | grep \!:1; ucmdq integration | grep \!:1'
+alias ubcd 'cd $WORKAREA/dfx/ub/\!:1; ucmd'
+alias uvcd 'cd $WORKAREA/dfx/ub_val/\!:1; ucmd'
+alias clonecode 'git clone https://github.com/intel-innersource/applications.design-automation.dft.ultibuild.code.git ub.code'
+alias cloneregression 'git clone https://github.com/intel-innersource/applications.design-automation.dft.ultibuild.regression.git ub.regression'
+
+# VSCode
+alias gvim  ~/scripts/TCSH/gvim.csh
+alias ubterm 'source ~/scripts/TCSH/find_matching_spaces_and_set_envvars.csh'
+alias vsc "$VSCODE_HOME/code --user-data-dir $VSCODE_USER_DATA --extensions_dir $VSCODE_USER_EXTENSIONS"
+alias posh 'eval `oh-my-posh init tcsh --config ~/oh-my-posh-theme.omp.json`'
